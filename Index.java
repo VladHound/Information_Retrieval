@@ -20,7 +20,7 @@ import org.apache.lucene.document.Field;
 import com.google.gson.annotations.SerializedName;
 
 public class Index {
-    private static final Type Fields = new TypeToken<List<Fields>>() {
+    private static final Type FIELDS = new TypeToken<List<Fields>>() {
     }.getType();
 
     private static final String INDEX_DIR = "C:\\Users\\vladp\\IdeaProjects\\Information Retrieval\\Index";
@@ -39,7 +39,7 @@ public class Index {
         IndexWriter writer = new IndexWriter(dir, config);
         Reader reader = new FileReader(JSON_FILE);
         try (reader) {
-            List<Fields> list = data.fromJson(reader, Fields);
+            List<Fields> list = data.fromJson(reader, FIELDS);
             for (Fields fields : list) {
                 Document document = new Document();
                 document.add(new TextField("position", fields.getPosition(), Field.Store.YES));
