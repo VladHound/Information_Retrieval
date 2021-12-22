@@ -28,7 +28,9 @@ public class Search {
         IndexSearcher searcher = new IndexSearcher(reader);
         CustomAnalyzer analyzer = CustomAnalyzer.builder().withTokenizer("standard")
                 .addTokenFilter("SnowballPorter", "language", "Russian")
-                .addTokenFilter("lowercase").addTokenFilter("stop").build();
+                .addTokenFilter("lowercase")
+                .addTokenFilter("stop")
+                .build();
         Scanner scanner = new Scanner(System.in);
         String line = scanner.nextLine();
         Query lineQuery = new MultiFieldQueryParser(new String[]{

@@ -32,7 +32,9 @@ public class Index {
         FSDirectory dir = new NIOFSDirectory(Paths.get(INDEX_DIR));
         CustomAnalyzer analyzer = CustomAnalyzer.builder().withTokenizer("standard")
                 .addTokenFilter("SnowballPorter", "language", "Russian")
-                .addTokenFilter("lowercase").addTokenFilter("stop").build();
+                .addTokenFilter("lowercase")
+                .addTokenFilter("stop")
+                .build();
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         IndexWriter writer = new IndexWriter(dir, config);
         Reader reader = new FileReader(JSON_FILE);
