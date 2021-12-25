@@ -60,8 +60,8 @@ public class Search {
         list.addAll(list3);
         list.addAll(list2);
         list.addAll(list1);
-        List<Document> deDupList = list.stream().distinct().collect(Collectors.toList());
-        if (deDupList.size() != 0)
+        if (list.size() != 0) {
+            List<Document> deDupList = list.stream().distinct().collect(Collectors.toList());
             for (int i = 0; i < 10; i++)
                 System.out.println(i + 1 + ") " +
                         deDupList.get(i).get("position") + " | " +
@@ -71,6 +71,7 @@ public class Search {
                         deDupList.get(i).get("countries") + " | " +
                         deDupList.get(i).get("rate") + " | " +
                         deDupList.get(i).get("link"));
+        }
         else
             System.out.println("По данному запросу ничего не найдено");
     }
