@@ -39,7 +39,7 @@ public class Search {
         Scanner scanner = new Scanner(System.in);
         String line = scanner.nextLine();
         QueryParser qp = new MultiFieldQueryParser(new String[]{
-                "genres", "title", "year", "countries", "rate", "position"
+                "position", "title", "genres", "year", "countries", "rate"
         }, analyzer);
         Query lineQuery = qp.parse(line);
         TopDocs hits = searcher.search(lineQuery, 1000);
