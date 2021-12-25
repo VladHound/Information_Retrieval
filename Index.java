@@ -30,10 +30,13 @@ public class Index {
     public static void main(String[] args) throws IOException {
         Gson data = new Gson();
         FSDirectory dir = new NIOFSDirectory(Paths.get(INDEX_DIR));
-        CustomAnalyzer analyzer = CustomAnalyzer.builder().withTokenizer("standard")
+        CustomAnalyzer analyzer = CustomAnalyzer.builder()
+                .withTokenizer("standard")
                 .addTokenFilter("SnowballPorter", "language", "Russian")
                 .addTokenFilter("lowercase")
                 .addTokenFilter("stop")
+                .addTokenFilter("porterstem")
+                .addTokenFilter("capitalization")
                 .build();
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         IndexWriter writer = new IndexWriter(dir, config);
